@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	include("../data/profile_handler.php");
+	
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
+		include("../data/profile_picture_handler.php");
+	}
+?>
+
 <html>
 	<body>
 		<table border="1" height="70%" width="80%" cellpadding="20">
@@ -6,7 +16,7 @@
 					<img align="center" src="Logo.png"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;
-					Logged in as <a href="">Bob</a> | 
+					Logged in as <a href="View Profile.php"><?= $_SESSION['username']; ?></a> | 
 					<a href="Login.php">Logout</a>
 				</td>
 			</tr>
@@ -23,12 +33,28 @@
 					<ul>
 				</td>
 				<td colspan="8" valign="top">
-					<fieldset>
-						<legend>PROFILE PICTURE</legend>
-						<img src="Face.png" height="200" width="200"><br><br>
-						<input type="file"><hr>
-						<input type="submit">
-					</fieldset>
+					<form method="POST" enctype="multipart/form-data">
+						<fieldset>
+							<legend>PROFILE PICTURE</legend>
+							<?php
+								
+								$pp = mysqli_query($conn,"select profile_picture from users where username='$username'");
+								$res1 = mysqli_fetch_assoc($pp);
+								
+								if($res1['profile_picture'] == null)
+								{
+									echo '<img src="Face.png" height="200" width="200"><br><br>';
+								}
+								else
+								{
+									echo '<img src="data:image/jpeg;base64,'.base64_encode( $res1['profile_picture'] ).'" height="200" width="200"/>';
+								}
+							?>
+							<br/>
+							<input type="file" name="file"><hr>
+							<input type="submit" name="submit">
+						</fieldset>
+					</form>
 				</td>
 			</tr>
 			<tr height="10%">

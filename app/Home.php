@@ -13,7 +13,7 @@
 			</tr>
 			<tr height="200%">
 				<td>
-					<h3>Welcome to xCompany</h3>
+					<h3>Welcome to Phototalk</h3>
 				</td>
 			</tr>
 			<tr height="10%">

@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
+		include("../data/change_password_handler.php");
+	}
+?>
+
 <html>
 	<body>
 		<table border="1" height="70%" width="80%" cellpadding="20">
@@ -6,7 +15,7 @@
 					<img align="center" src="Logo.png"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;
-					Logged in as <a href="">Bob</a> | 
+					Logged in as <a href="View Profile.php"><?= $_SESSION['username']; ?></a> | 
 					<a href="Login.php">Logout</a>
 				</td>
 			</tr>
@@ -23,14 +32,16 @@
 					<ul>
 				</td>
 				<td colspan="8" valign="top">
-					<fieldset>
-						<legend>CHANGE PASSWORD</legend>
-						Current Password &emsp;&emsp; :<input name="current_password"/><br>
-						New Password&emsp;&emsp;&emsp;&ensp;:<input name="new_password"/><br>
-						Retype New Password : <input name="retype_new_password"/>
-						<hr>
-						<input type="submit">
-					</fieldset>
+					<form method="POST">
+						<fieldset>
+							<legend>CHANGE PASSWORD</legend>
+							Current Password &emsp;&emsp; :<input name="current_password" type="password"/><br>
+							New Password&emsp;&emsp;&emsp;&ensp;:<input name="new_password" type="password"/><br>
+							Retype New Password : <input name="retype_new_password" type="password"/>
+							<hr>
+							<input type="submit">
+						</fieldset>
+					</form>
 				</td>
 			</tr>
 			<tr height="10%">

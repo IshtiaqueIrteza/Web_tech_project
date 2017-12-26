@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	//var_dump($GLOBALS);
+?>
 <html>
 	<body>
 		<table border="1" height="70%" width="80%" cellpadding="20">
@@ -6,7 +10,7 @@
 					<img align="center" src="Logo.png"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;
-					Logged in as <a href="">Bob</a> | 
+					Logged in as <a href="View Profile.php"><?= $_SESSION['username']; ?></a> | 
 					<a href="Login.php">Logout</a>
 				</td>
 			</tr>
@@ -14,7 +18,7 @@
 				<td colspan="1" width="30%">
 					Account
 					<ul>
-						<li><a href="">Dashboard</a></li>
+						<li><a href="Dashboard.php">Dashboard</a></li>
 						<li><a href="View Profile.php">View Profile</a></li>
 						<li><a href="Edit Profile.php">Edit Profile</a></li>
 						<li><a href="Change Profile Picture.php">Change Profile Picture</a></li>
@@ -23,7 +27,7 @@
 					<ul>
 				</td>
 				<td colspan="8" valign="top">
-					<h3>Welcome Bob</h3>
+					<h3>Welcome <?= $_SESSION['username']; ?></h3>
 				</td>
 			</tr>
 			<tr height="10%">

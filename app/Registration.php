@@ -1,8 +1,14 @@
 <?php
-	if($_SERVER['REQUEST_METHOD'] == "POST")
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		include("../data/registration_handler.php");
-		validation();
+		
+		if(validation())
+		{	
+			echo '<script language="javascript"> alert("Registration completed successfully");
+			window.location = "Login.php";
+			</script>';
+		}
 	}
 ?>
 
@@ -20,36 +26,36 @@
 			</tr>
 			<tr height="200%">
 				<td>
-						<form method="post">
+						<form method="POST">
 							<fieldset>
 								<legend>REGISTRATION</legend>
 								<br>Name &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-								:<input name="name" type="text"/><hr>
+								:<input id="name" name="name" type="text"/><hr>
 								Email &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-								:<input name="email" type="text"/><hr>
+								:<input id="email" name="email" type="text"/><hr>
 								User Name&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;
-								:<input name="username" type="text"/><hr>
+								:<input id="username" name="username" type="text"/><hr>
 								Password &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
-								:<input name="password" type="text"/><hr>
+								:<input id="password" name="password" type="password"/><hr>
 								Confirm Password &emsp;&emsp;
-								:<input name="confirm_password" type="text"/><hr>
+								:<input id="confirm_password" name="confirm_password" type="password"/><hr>
 								
 								<fieldset>
 									<legend>Gender</legend>
-									<input name="gender" type="radio"/>Male
-									<input name="gender" type="radio"/>Female
-									<input name="gender" type="radio"/>Other
+									<input id="male" name="gender" type="radio" value="m"/>Male
+									<input id="female" name="gender" type="radio" value="f"/>Female
+									<input id="other" name="gender" type="radio" value="o"/>Other
 								</fieldset>
 								<hr>
 								<fieldset>
 									<legend>Date of Birth</legend>
-									<input name="day" type="text"/>/
-									<input name="month" type="text"/>/
-									<input name="year" type="text"/> (dd/mm/yyyy)
+									<input id="day" name="day" type="text"/>/
+									<input id="month" name="month" type="text"/>/
+									<input id="year" name="year" type="text"/> (dd/mm/yyyy)
 								</fieldset>
 								<hr>
 								
-								<input type="submit"> <input type="reset">
+								<input type="submit"/> <input type="reset"/>
 								
 							</fieldset>
 							
@@ -64,3 +70,32 @@
 		</table>
 	</body>
 </html>
+
+<script>
+	var msg = "<?= $message; ?>";
+	var gender = "<?= $gender; ?>";
+	
+	if(msg != "")
+	{
+		document.getElementById('name').value = "<?= $_POST['name']; ?>";
+		document.getElementById('email').value = "<?= $_POST['email']; ?>";
+		document.getElementById('username').value = "<?= $_POST['username']; ?>";
+		
+		if(gender == "Male")
+		{
+			document.getElementById('male').checked = true;
+		}
+		else if(gender == "Female")
+		{
+			document.getElementById('female').checked = true;
+		}
+		else if(gender == "Others")
+		{
+			document.getElementById('other').checked = true;
+		}
+		
+		document.getElementById('day').value = "<?= $_POST['day']; ?>";
+		document.getElementById('month').value = "<?= $_POST['month']; ?>";
+		document.getElementById('year').value = "<?= $_POST['year']; ?>";
+	}
+</script>
