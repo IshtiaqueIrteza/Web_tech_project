@@ -5,48 +5,61 @@
 	
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && $_FILES['file']['name'] != "")
 	{
-		$image = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+		$fileName = $_FILES['file']['name'];
+		$fileExt = explode(".",$fileName);
+		$fileActualExt = strtolower(end($fileExt));
 		
-		$query1 = "select profile_picture from admin where username='$username'"; 
-		$q1 = mysqli_query($conn,$query1);
-		$q = mysqli_fetch_assoc($q1);
-		
-		if($q['profile_picture'] == null)
+		if($fileActualExt === "jpeg" || $fileActualExt == "jpg" || $fileActualExt == "png")
 		{
-			$query = "UPDATE admin SET profile_picture='$image' WHERE admin.username = '$username'"; 
-			$result = mysqli_query($conn,$query);
+			$image = addslashes(file_get_contents($_FILES['file']['tmp_name']));
 			
-			if($result)
+			$query1 = "select profile_picture from admin where username='$username'"; 
+			$q1 = mysqli_query($conn,$query1);
+			$q = mysqli_fetch_assoc($q1);
+			
+			if($q['profile_picture'] == null)
 			{
-				echo '<script language="javascript">';
-				echo 'alert("Profile_Picture uploaded successfully")';
-				echo '</script>';
+				$query = "UPDATE admin SET profile_picture='$image' WHERE admin.username = '$username'"; 
+				$result = mysqli_query($conn,$query);
+				
+				if($result)
+				{
+					echo '<script language="javascript">';
+					echo 'alert("Profile_Picture uploaded successfully")';
+					echo '</script>';
+				}
+				else
+				{
+					echo '<script language="javascript">';
+					echo 'alert("Unknown error occured !!!")';
+					echo '</script>';
+				}
 			}
 			else
 			{
-				echo '<script language="javascript">';
-				echo 'alert("Unknown error occured !!!")';
-				echo '</script>';
-			}
+				$query = "UPDATE admin SET profile_picture='$image' WHERE admin.username = '$username'";
+				$result = mysqli_query($conn,$query);
+				
+				if($result)
+				{
+					echo '<script language="javascript">';
+					echo 'alert("Profile_Picture uploaded successfully")';
+					echo '</script>';
+				}
+				else
+				{
+					echo '<script language="javascript">';
+					echo 'alert("Unknown error occured !!!")';
+					echo '</script>';
+				}
+			}	
 		}
 		else
 		{
-			$query = "UPDATE admin SET profile_picture='$image' WHERE admin.username = '$username'";
-			$result = mysqli_query($conn,$query);
-			
-			if($result)
-			{
-				echo '<script language="javascript">';
-				echo 'alert("Profile_Picture uploaded successfully")';
-				echo '</script>';
-			}
-			else
-			{
-				echo '<script language="javascript">';
-				echo 'alert("Unknown error occured !!!")';
-				echo '</script>';
-			}
-		}	
+			echo '<script language="javascript">';
+			echo 'alert("Please upload valid Images")';
+			echo '</script>';
+		}
 	}
 	else
 	{
