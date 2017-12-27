@@ -224,6 +224,34 @@
 			{
 				$_SESSION['username'] = $username;
 				
+				$destination = '../uploads/'.$user.'/';
+				$newDestination = '../uploads/'.$username.'/';
+				
+				if(is_dir($destination))
+				{
+					rename($destination,$newDestination); //renaming new directory
+					//var_dump($destination);
+				}
+				//changing every picture directory from database
+				$query = "select * from user_images where username='$username'";
+				$ans = mysqli_query($conn,$query);
+				
+				if(mysqli_num_rows($ans) != 0)
+				{
+					while($row6 = mysqli_fetch_array($ans))
+					{
+						$id = $row6['id'];
+						$path = $row6['image_path'];
+						$path1 = str_replace($user,$username,$path);
+						
+						$tmp_qry = "UPDATE user_images SET `image_path` = '$path1' WHERE user_images.id = '$id'";
+						
+						mysqli_query($conn,$tmp_qry);
+					}
+				}
+				
+				//end updating
+				
 				$user_data_query = "select * from users where username='$username'";
 				$user_data = mysqli_query($conn,$user_data_query);
 			
