@@ -322,6 +322,13 @@
 			
 			if($result)
 			{
+				$destination = '../uploads/'.$username;
+				
+				if(!is_dir($destination))
+				{
+					mkdir($destination,"0777",true); // creating a new directory
+				}
+				
 				return true;
 			}
 			else

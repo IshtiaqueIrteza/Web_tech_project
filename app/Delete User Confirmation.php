@@ -3,6 +3,7 @@
 	include("../data/delete_user_handler.php");
 	
 	$username = $_GET['username'];
+	$dirname = '../uploads/'.$username;
 	$userInfo = retrieveInfo($username);
 	//var_dump($GLOBALS);
 	
@@ -12,6 +13,10 @@
 		
 		if($res)
 		{
+			//remove user's directory
+			
+			array_map('unlink', glob("$dirname/*.*"));
+			rmdir($dirname);
 			echo '<script language="javascript"> alert("User Removed Successfully");
 			window.location = "Userlist.php";
 			</script>';

@@ -5,10 +5,10 @@
 
 <html>
 	<body>
-		<table border="1" height="70%" width="80%" cellpadding="20">
+		<table border="1" height="90%" width="80%" cellpadding="20" align="center">
 			<tr height="20%">
 				<td colspan="9">
-					<img align="center" src="Logo.png"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<img align="center"  src="Logo.jpg" width="100" height="50"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;
 					Logged in as <a href="Admin_View_Profile.php"><?= $_SESSION['username']; ?></a> | 
