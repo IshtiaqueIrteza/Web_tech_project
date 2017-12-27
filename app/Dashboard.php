@@ -4,10 +4,10 @@
 ?>
 <html>
 	<body>
-		<table border="1" height="70%" width="80%" cellpadding="20">
+		<table border="1" height="85%" width="80%" cellpadding="20" align="center">
 			<tr height="20%">
 				<td colspan="9">
-					<img align="center" src="Logo.png"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<img align="center"  src="Logo.jpg" width="100" height="50"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					&emsp;&emsp;&emsp;
 					Logged in as <a href="View Profile.php"><?= $_SESSION['username']; ?></a> | 
@@ -28,6 +28,8 @@
 				</td>
 				<td colspan="8" valign="top">
 					<h3>Welcome <?= $_SESSION['username']; ?></h3>
+					<br/><br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b><i>User Panel</i></b><br/><br/>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href="Gallery.php">Gallery</a>&emsp;&emsp;&emsp;&emsp; <a href="">Contests</a>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="">Donations</a>
 				</td>
 			</tr>
 			<tr height="10%">
